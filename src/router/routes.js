@@ -3,6 +3,7 @@ import Sort from '../pages/Sort/Sort.vue'
 import Buy from '../pages/Buy/Buy.vue'
 import Car from '../pages/Car/Car.vue'
 import Profile from '../pages/Profile/Profile.vue'
+import Search from '../pages/Search/Search.vue'
 
 export default [
     //注册路由
@@ -25,6 +26,10 @@ export default [
     {
         path: '/profile',
         component: Profile
+    },
+    {
+        path: '/search',
+        component: Search
     },
     {
         path : '/',

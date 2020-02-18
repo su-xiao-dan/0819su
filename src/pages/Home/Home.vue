@@ -3,7 +3,7 @@
     <div id="header">
       <div class="headerTop">
         <span class="logo">网易严选</span>
-        <input type="text" placeholder="搜索商品,共20253款好物">
+        <input @click="gotoPath('/search')" type="text" placeholder="搜索商品,共20253款好物">
         <button>登录</button>
       </div>
       <div class="headerBottom">
@@ -35,6 +35,17 @@
         </li>
       </ul>
     </div>
+    <div id="listNav">
+      <ul>
+        <li v-for="(listNav, index) in listNavData" :key="index">
+          <img :src="listNav.picUrl" alt="">
+          <span>{{listNav.text}}</span>
+        </li>
+      </ul>
+    </div>
+    <div id="png">
+      <img src="https://yanxuan.nosdn.127.net/5db28c137605ea7576c986e9c285e1c6.png" alt="">
+    </div>
   </div>
 </template>
 
@@ -43,10 +54,12 @@ import BScroll from 'better-scroll'
 import Swiper from 'swiper'
 import 'swiper/css/swiper.min.css'
 import indexCateModule from '../../datas/indexCateModule.json'
+import listNavData from '../../datas/index.json'
   export default {
     data() {
       return {
-        cateNavDates : []
+        cateNavDates : [],
+        listNavData : {}
       }
     },
     mounted() {
@@ -63,11 +76,17 @@ import indexCateModule from '../../datas/indexCateModule.json'
         },
       })
       this.cateNavDates = indexCateModule
+      this.listNavData = listNavData.kingKongModule.kingKongList
+    },
+    methods: {
+      gotoPath(path){
+        path !== this.$route.path && this.$router.push(path)
+      }
     },
   }
 </script>
 
-<style lang="stylus">
+<style lang="stylus" scoped>
   #header
     width 100%
     .headerTop
@@ -147,4 +166,32 @@ import indexCateModule from '../../datas/indexCateModule.json'
           vertical-align middle
         span
           vertical-align middle
+  #listNav
+    width 100%
+    height 340px
+    border-top 1px solid #eee
+    // box-sizing border-box
+    padding-bottom 32px
+    ul
+      display flex
+      flex-wrap wrap
+      width 100%
+      height 100%
+      li
+        display flex
+        height 50%
+        margin 0 20px
+        flex-direction column
+        img 
+          width 110px
+          height 110px
+        span 
+          line-height 40px
+          margin-left 7px
+  #png
+    width 100%
+    height 240px
+    img 
+      width 100%
+      height 100%
 </style>
