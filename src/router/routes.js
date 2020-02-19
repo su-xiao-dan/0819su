@@ -9,19 +9,31 @@ export default [
     //注册路由
     {
         path: '/home',
-        component: Home
+        component: Home,
+        meta : {
+            isShowFooter : true
+        }
     },
     {
         path: '/sort',
-        component: Sort
+        component: Sort,
+        meta: {
+            isShowFooter: true
+        }
     },
     {
         path: '/buy',
-        component: Buy
+        component: Buy,
+        meta: {
+            isShowFooter: true
+        }
     },
     {
         path: '/car',
-        component: Car
+        component: Car,
+        meta: {
+            isShowFooter: true
+        }
     },
     {
         path: '/profile',

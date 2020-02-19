@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div id="wrap">
+    <!-- 头部 -->
     <div id="header">
       <div class="headerTop">
         <span class="logo">网易严选</span>
@@ -13,12 +14,16 @@
         </ul>
       </div>
     </div>
+
+    <!-- 轮播图 -->
     <div class="swiper-container">
       <div class="swiper-wrapper">
         <img v-for="(image, index) in cateNavDates" :key="index" class="swiper-slide" :src="image.imgUrl" alt="">
       </div>
       <div class="swiper-pagination"></div>
     </div>
+
+    <!-- 广告 -->
     <div id="content">
       <ul>
         <li>
@@ -35,17 +40,96 @@
         </li>
       </ul>
     </div>
+
+    <!-- 列表导航 -->
     <div id="listNav">
       <ul>
         <li v-for="(listNav, index) in listNavData" :key="index">
-          <img :src="listNav.picUrl" alt="">
-          <span>{{listNav.text}}</span>
+          <a :href="listNav.schemeUrl">
+            <img :src="listNav.picUrl" alt="">
+            <span>{{listNav.text}}</span>
+          </a>
         </li>
       </ul>
     </div>
+    
+    <!-- 防疫专区 -->
     <div id="png">
       <img src="https://yanxuan.nosdn.127.net/5db28c137605ea7576c986e9c285e1c6.png" alt="">
+      <div class="png01">
+        <img src="https://yanxuan.nosdn.127.net/a4187bffa2a0431ec5d6e2dd1070d6c5.gif" alt="">
+      </div>
+      <div class="ceil">
+        <img src="https://yanxuan.nosdn.127.net/28244c6ae7ef78424ea5317a0d72dd6a.png" alt="">
+        <img src="https://yanxuan.nosdn.127.net/15b56691109bba3adf6156fd44f14073.png" alt="">
+      </div>
+      <div class="floor">
+        <img src="https://yanxuan.nosdn.127.net/83b35324b02e31aa202a12971fa7f8c3.png" alt="">
+        <img src="https://yanxuan.nosdn.127.net/2c98b2002572ec4cd0824bc810d7d31f.png" alt="">
+      </div>
     </div>
+    <div class="placeholder"></div>
+
+    <!-- 优惠卷 -->
+    <div class="youhui">
+      <div class="xinren">— 新人专享礼 —</div>
+      <div class="content">
+        <div class="left">
+          <span>新人专享红包</span>
+          <img src="//yanxuan.nosdn.127.net/ba4d635ec94ad95b28bfab6500900659.png" alt="">
+        </div>
+        <div class="right">
+          <div class="fulishe" v-for="(module, index) in indexActivityModule" :key="index">
+            <span>{{module.title}}</span>
+            <br/>
+            <br/>
+            <p>{{module.subTitle}}</p>
+            <p>{{module.tag}}</p>
+            <img src="https://yanxuan-item.nosdn.127.net/0fd9f9e40f287ecfe3b54aaafda914f6.png" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="placeholder"></div>
+
+    <!-- 热销 -->
+    <div class="sellWell">
+      <div class="sellWellHeader">
+        <span>类目热销榜</span>
+      </div>
+      <div class="sellWellFooter">
+        <ul class="listSell">
+          <li v-for="(categoryItem, index) in categoryList" :key="index">
+            <a :href="categoryItem.targetUrl">
+              <span>{{categoryItem.categoryName}}</span>
+              <img :src="categoryItem.showPicUrl" alt="">
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="placeholder"></div>
+    
+    <!-- 限时购物 -->
+    <div class="timeBuy">
+      <div class="timeBuyHeader">
+        <span>限时购</span>
+        <CountTime/>
+        <span>更多 ></span>
+      </div>
+      <div class="timeBuyFooter">
+        <ul>
+          <li v-for="(timeBuyFooterItem, index) in timeBuyFooter" :key="index">
+            <img :src="timeBuyFooterItem.picUrl" alt="">
+            <span>￥{{timeBuyFooterItem.activityPrice}}</span>
+            <span>￥{{timeBuyFooterItem.originPrice}}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="placeholder"></div>
+
+
   </div>
 </template>
 
@@ -55,12 +139,19 @@ import Swiper from 'swiper'
 import 'swiper/css/swiper.min.css'
 import indexCateModule from '../../datas/indexCateModule.json'
 import listNavData from '../../datas/index.json'
+import CountTime from '../../components/CountTime/CountTime'
   export default {
     data() {
       return {
         cateNavDates : [],
-        listNavData : {}
+        listNavData : {},
+        indexActivityModule :[],
+        categoryList : [],
+        timeBuyFooter : []
       }
+    },
+    components:{
+      CountTime
     },
     mounted() {
       new BScroll('.headerBottom',{
@@ -77,6 +168,9 @@ import listNavData from '../../datas/index.json'
       })
       this.cateNavDates = indexCateModule
       this.listNavData = listNavData.kingKongModule.kingKongList
+      this.indexActivityModule = listNavData.indexActivityModule
+      this.categoryList = listNavData.categoryHotSellModule.categoryList
+      this.timeBuyFooter = listNavData.flashSaleModule.itemList
     },
     methods: {
       gotoPath(path){
@@ -87,6 +181,8 @@ import listNavData from '../../datas/index.json'
 </script>
 
 <style lang="stylus" scoped>
+  #wrap
+    height 4000px
   #header
     width 100%
     .headerTop
@@ -182,16 +278,189 @@ import listNavData from '../../datas/index.json'
         height 50%
         margin 0 20px
         flex-direction column
-        img 
+        a
           width 110px
           height 110px
-        span 
-          line-height 40px
-          margin-left 7px
+          img 
+            width 110px
+            height 110px
+          span 
+            line-height 40px
+            margin-left 7px
   #png
     width 100%
-    height 240px
+    height 828px
     img 
       width 100%
-      height 100%
+      height 240px
+    .png01
+      width 710px
+      height 160px
+      margin-top -3px
+      border-left 20px solid #1674e3
+      border-top 20px solid #1674e3
+      border-right 20px solid #1674e3
+      border-bottom 10px solid #1674e3
+      img
+        width 710px
+        height 160px
+    .ceil
+      width 710px
+      height 186px
+      border-left 20px solid #1674e3
+      border-right 20px solid #1674e3
+      border-bottom 10px solid #1674e3
+      img   
+        width 50%
+        height 100%
+        box-sizing border-box
+      img:nth-child(1)
+        border-right 6px solid #1674e3
+    .floor
+      width 710px
+      height 186px
+      border-left 20px solid #1674e3
+      border-right 20px solid #1674e3
+      border-bottom 20px solid #1674e3
+      img   
+        width 50%
+        height 100%
+        box-sizing border-box
+      img:nth-child(1)
+        border-right 6px solid #1674e3
+  .placeholder
+    width 100%
+    height 20px
+    background #eee
+  .youhui
+    width 750px
+    height 558px
+    padding 30px 32px
+    box-sizing border-box
+    .xinren 
+      font-size 34px
+      text-align center
+      margin-bottom 24px
+    .content
+      width 100%
+      height 438px
+      display flex
+      .left
+        width 340px
+        height 434px
+        background #f9e9cf
+        border-right 5px solid #fff
+        box-sizing border-box
+        span 
+          font-size 32px
+          margin-left 30px
+          line-height 90px
+        img
+          width 258px
+          height 257px
+          margin-top 30px
+          margin-left 40px
+      .right
+        width 140px
+        height 410px
+        .fulishe
+          width 343px
+          height 220px
+          background #fbe2d3
+          padding-top 20px
+          padding-left 20px
+          border-bottom 5px solid #fff
+          box-sizing border-box
+          position relative
+        .fulishe:nth-child(2)
+          background #ffecc2
+        span 
+          font-size 30px
+        p 
+          font-size 22px
+        img
+          width 200px
+          height 200px
+          position absolute
+          right 0
+          bottom -4px
+  .sellWell
+    width 100%
+    height 710px
+    padding 30px
+    box-sizing border-box
+    .sellWellHeader
+      height 80px
+      span 
+        font-size 35px
+        line-height 80px
+    .sellWellFooter
+      width 100%
+      height 610px
+      .listSell
+        display flex
+        flex-wrap wrap
+        li:nth-child(-n+2)
+          width 49%
+          border 3px solid #fff
+          background #F9F3E4
+          span 
+            font-size 32px
+            margin 0 20px
+          img
+            width 200px
+            height 200px
+            vertical-align middle
+        li:nth-child(n+3)
+          width 25%
+          border 5px solid #fff
+          padding 5px
+          box-sizing border-box
+          display flex
+          flex-direction column
+          text-align center
+          background #f5f5f5
+          span  
+            font-size 20px
+            margin 5px 21px 0
+          img     
+            width 120px
+            height 120px
+            margin-left 22px
+  .timeBuy
+    width 100%
+    height 700px
+    padding 30px
+    box-sizing border-box
+    .timeBuyHeader
+      width 100%
+      height 100px
+      display flex
+      span  
+        font-size 37px
+      span:last-child
+        margin-left 310px
+        font-size 26px
+    .timeBuyFooter
+      width 100%
+      height 600px
+      ul 
+        display flex
+        flex-wrap wrap
+        li  
+          width 31%
+          margin 0 10px 10px 0
+          img 
+            width 216px
+            height 216px
+            background #eee
+          span  
+            font-size 30px
+            text-align center
+            color #dd1a21
+          span:last-child
+            text-decoration line-through
+            color #ccc
+            font-size 26px
+            margin-left 10px
 </style>
