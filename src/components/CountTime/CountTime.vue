@@ -27,7 +27,7 @@ export default {
       var date = new Date()
       var now = date.getTime()
       //设置截止时间
-      var endDate = new Date('2020-2-19 23:23:23')
+      var endDate = new Date('2020-2-20 23:23:23')
       var end = endDate.getTime()
       //时间差
       var leftTime = end - now
@@ -38,7 +38,7 @@ export default {
         this.m = Math.floor((leftTime / 1000 / 60) % 60)
         this.s = Math.floor((leftTime / 1000) % 60)
       }
-      console.log(this.s)
+      // console.log(this.s)
       //递归每秒调用countTime方法，显示动态时间效果
       setTimeout(this.countTime, 1000)
     },

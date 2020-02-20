@@ -5,7 +5,10 @@
      </div>
      <div id="app">
         <ul>
-          <li v-for="(item, index) in cateNavDatas" :key="index">{{item.name}}</li>
+          <li
+            :class="activeClass === index?'active':''"
+            v-for="(item, index) in cateNavDatas" :key="index"
+            @click="changeIndex(index)">{{item.name}}</li>
         </ul>
       <div class="right">
         <div class="topImg">
@@ -29,7 +32,8 @@ import cateLists from '../../datas/cateLists.json'
     data() {
       return {
         cateNavDatas : {},
-        cateLists : []
+        cateLists : [],
+        activeClass : 0
       }
     },
     mounted() {
@@ -39,6 +43,9 @@ import cateLists from '../../datas/cateLists.json'
     methods: {
       gotoPath(path){
         path !== this.$route.path && this.$router.push(path)
+      },
+      changeIndex(index){
+        this.activeClass = index
       }
     },
   }
@@ -75,6 +82,15 @@ import cateLists from '../../datas/cateLists.json'
         text-align center
         margin 19.5px 0
         font-size 28px
+      .active
+        color #ab2b2b
+        &:before
+          content ""
+          display block
+          width 6px
+          height 50px
+          position absolute
+          background #ab2b2b
     .right
       width 528px
       padding 30px

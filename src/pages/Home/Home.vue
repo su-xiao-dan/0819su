@@ -192,7 +192,7 @@ import CountTime from '../../components/CountTime/CountTime'
         categoryList : [],
         timeBuyFooter : [],
         newItemListData : [],  //新品页面数据
-        sceneLightShoppingGuideModule : []  //底部之前的数据
+        sceneLightShoppingGuideModule : [],  //底部之前的数据
       }
     },
     components:{
@@ -283,6 +283,16 @@ import CountTime from '../../components/CountTime/CountTime'
           padding 0 5px
           box-sizing border-box
           margin 0 10px
+        .active
+          color #ab2b2b
+          &:before
+            content ""
+            display block
+            width 130px
+            height 5px
+            position absolute
+            bottom 0
+            background #ab2b2b
   .swiper-container
     width 100%
     height 370px
