@@ -129,7 +129,49 @@
     </div>
     <div class="placeholder"></div>
 
+    <!-- 新品首发 -->
+    <div class="newProduct">
+      <div class="productHeader">
+        <span>新品首发</span>
+        <span>更多 > </span>
+      </div>
+      <div class="productFooter">
+        <ul>
+          <li v-for="(newItem, index) in newItemListData" :key="index">
+            <img :src="newItem.primaryPicUrl" alt="">
+            <span>每日急速补货，医用级手套，出行防接触感染</span>
+            <span>￥{{newItem.retailPrice}}</span>
+            <span>{{newItem.itemTagList[0].name}}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="placeholder"></div>
 
+    <!-- 底部之前 -->
+    <div class="beforeFooter">
+      <ul>
+        <li v-for="(scene, index) in sceneLightShoppingGuideModule" :key="index">
+          <p>{{scene.styleItem.title}}</p>
+          <p>{{scene.styleItem.desc}}</p>
+          <img :src="scene.styleItem.picUrlList[0]" alt="">
+          <img :src="scene.styleItem.picUrlList[1]" alt="">
+        </li>
+      </ul>
+    </div>
+    <div class="placeholder"></div>
+
+    <!-- 底部 -->
+    <div class="footer">
+      <div class="footerContainer">
+        <div class="footerTop">
+          <div>下载App</div>
+          <div>电脑版</div>
+        </div>
+        <p>网易公司版权所有 © 1997-2000</p>
+        <p>食品经营许可证：JY13301080111719</p>
+      </div> 
+    </div>
   </div>
 </template>
 
@@ -137,6 +179,7 @@
 import BScroll from 'better-scroll'
 import Swiper from 'swiper'
 import 'swiper/css/swiper.min.css'
+import _ from 'lodash'
 import indexCateModule from '../../datas/indexCateModule.json'
 import listNavData from '../../datas/index.json'
 import CountTime from '../../components/CountTime/CountTime'
@@ -147,7 +190,9 @@ import CountTime from '../../components/CountTime/CountTime'
         listNavData : {},
         indexActivityModule :[],
         categoryList : [],
-        timeBuyFooter : []
+        timeBuyFooter : [],
+        newItemListData : [],  //新品页面数据
+        sceneLightShoppingGuideModule : []  //底部之前的数据
       }
     },
     components:{
@@ -171,6 +216,8 @@ import CountTime from '../../components/CountTime/CountTime'
       this.indexActivityModule = listNavData.indexActivityModule
       this.categoryList = listNavData.categoryHotSellModule.categoryList
       this.timeBuyFooter = listNavData.flashSaleModule.itemList
+      this.newItemListData = _.chunk(listNavData.newItemList,6)[0]
+      this.sceneLightShoppingGuideModule = listNavData.sceneLightShoppingGuideModule
     },
     methods: {
       gotoPath(path){
@@ -182,7 +229,7 @@ import CountTime from '../../components/CountTime/CountTime'
 
 <style lang="stylus" scoped>
   #wrap
-    height 4000px
+    height 5700px
   #header
     width 100%
     .headerTop
@@ -463,4 +510,89 @@ import CountTime from '../../components/CountTime/CountTime'
             color #ccc
             font-size 26px
             margin-left 10px
+  .newProduct
+    width 100%
+    height 922px
+    padding 30px
+    box-sizing border-box
+    .productHeader
+      height 100px
+      span  
+        font-size 34px
+      span:first-child
+        float left
+      span:last-child
+        float right
+        font-size 28px
+    .productFooter
+      height 796px
+      ul
+        display flex
+        flex-wrap wrap
+        li
+          width 216px
+          height 381px
+          margin 10px 8px 2px 0
+          box-sizing border-box
+          display flex
+          flex-direction column
+          img 
+            width 216px
+            height 216px
+            background #eee
+          span  
+            font-size 28px
+          span:nth-child(3)
+            color red
+            margin 10px 0
+            font-size 32px
+  .beforeFooter
+    width 100%
+    height 576px
+    padding 28px
+    box-sizing border-box
+    ul
+      display flex
+      flex-wrap wrap
+      li
+        background #f5f5f5
+        padding 20px
+        border 3px solid #fff
+        box-sizing border-box
+        p
+          font-size 30px
+        p:nth-child(2)
+          font-size 24px
+          color #7f7f7f
+          margin-top 10px
+        img 
+          width 150px
+          height 150px
+  .footer
+    width 100%
+    height 245px
+    background #414141
+    padding 20px 100px
+    box-sizing border-box
+    .footerContainer
+      width 100%
+      .footerTop
+        display flexa
+        div
+          width 172px
+          height 62px
+          background #414141
+          color #fff
+          font-size 30px
+          border 1px solid #999
+          text-align center
+          border-radius 10px
+          line-height 62px
+          float left
+          margin 20px 50px
+    p 
+      color #999
+      font-size 26px
+      text-align center
+      margin 7px 0
 </style>
