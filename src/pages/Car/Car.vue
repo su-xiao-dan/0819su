@@ -3,7 +3,7 @@
     <!-- 头部 -->
     <div class="header">
       <span>购物车</span>
-      <span>领卷</span>
+      <span @click="goLogin()">领卷</span>
     </div>
 
     <!-- 广告 -->
@@ -38,7 +38,7 @@
     methods: {
       goLogin(){
         this.$router.push('/profile')
-      }
+      },
     },
   }
 </script>

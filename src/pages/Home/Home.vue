@@ -199,8 +199,10 @@ import CountTime from '../../components/CountTime/CountTime'
       CountTime
     },
     mounted() {
-      new BScroll('.headerBottom',{
-        scrollX : true
+      this.$nextTick(()=>{
+        new BScroll('.headerBottom',{
+          scrollX : true
+        })
       })
       new Swiper('.swiper-container', {
         observer:true,//修改swiper自己或子元素时，自动初始化swiper
