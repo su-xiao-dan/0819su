@@ -15,17 +15,17 @@ module.exports = {
                 ]
             }
         }
+    },
+    devServer: {//解决跨域
+        proxy: {
+            '/api': {
+                target: 'https://m.you.163.com',
+                ws: true,
+                changeOrigin: true,
+                pathRewrite: {
+                    '^/api': ''
+                }
+            }
+        }
     }
-    // devServer: {
-    //     proxy: {
-    //         '/api': {
-    //             target: 'http://localhost:4000',
-    //             ws: true,
-    //             changeOrigin: true,
-    //             pathRewrite: {
-    //                 '^/api': ''
-    //             }
-    //         }
-    //     }
-    // }
 }

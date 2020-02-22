@@ -1,6 +1,6 @@
 <template>
   <div id="buyContent">
-     <div class="buyHeader">
+    <div class="buyHeader">
       <i @click="goHome()" class="iconfont icon-shouye"></i>
       <span>值得买</span>
       <i @click="goSearch()" class="iconfont icon-sousuo"></i>
@@ -10,6 +10,7 @@
 </template>
 
 <script type="text/ecmascript-6">
+import {getCateLists} from '../../api'
   export default {
     methods: {
       goHome(){
@@ -21,6 +22,11 @@
       goCar(){
         this.$router.push('/car')
       },
+    },
+    async mounted() {
+      let result = await getCateLists()
+      // this.$store.commit('save_address',result)
+      console.log(result)
     },
   }
 </script>
