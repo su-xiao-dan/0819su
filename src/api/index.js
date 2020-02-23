@@ -4,3 +4,11 @@ import ajax from './ajax'
 export const getCateLists = ()=> ajax({
     url: '/topic/v1/know/navWap.json'
 })
+
+export const getCateNavList = ()=> ajax({
+    url: '/getCateNavList'
+})
+
+export const getCateList = ()=> ajax({
+    url: '/getCateList'
+})

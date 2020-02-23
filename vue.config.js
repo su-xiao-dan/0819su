@@ -19,7 +19,7 @@ module.exports = {
     devServer: {//解决跨域
         proxy: {
             '/api': {
-                target: 'https://m.you.163.com',
+                target: 'http://localhost:3001',
                 ws: true,
                 changeOrigin: true,
                 pathRewrite: {

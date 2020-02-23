@@ -1,37 +1,33 @@
 <template>
   <div>
-        <ul>
-            <li
-            :class="activeClass === index?'active':''"
-            v-for="(item, index) in cateNavDatas" :key="index"
-            @click="changeIndex(index)">{{item.name}}</li>
-        </ul>
+    <ul>
+      <li
+      :class="activeClass === index?'active':''"
+      v-for="(item, index) in cateNavDatas" :key="index"
+      @click="changeIndex(index)">
+      <router-link :to="`/sort/sortright/${item.id}`">{{item.name}}</router-link>
+      </li>
+    </ul>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
-import {mapState} from 'vuex'
-import cateNavDatas from '../../datas/cateNavDatas.json'
   export default {
       data() {
           return {
-              cateNavDatas,
+              cateNavDatas : [],
               activeClass : 0
           }
       },
-      computed: {
-          ...mapState({
-            listId: state => state.listId,
-          })
-      },
-      mounted() {
-        this.cateNavDatas = cateNavDatas.categoryL1List
+      async mounted() {
+        let result = await this.$API.getCateNavList()
+        console.log(result)
+        this.cateNavDatas = result.categoryL1List
+        this.$router.push(`/sort/sortright/${this.cateNavDatas[0].id}`)
       },
       methods: {
           changeIndex(index){
             this.activeClass = index
-            let listId = this.cateNavDatas[index].id
-            this.$store.commit('save_listid',listId)
           }
       },
   }

@@ -4,6 +4,7 @@ import Buy from '../pages/Buy/Buy.vue'
 import Car from '../pages/Car/Car.vue'
 import Profile from '../pages/Profile/Profile.vue'
 import Search from '../pages/Search/Search.vue'
+import sortRight from '../components/sortRight/sortRight.vue'
 
 export default [
     //注册路由
@@ -19,7 +20,16 @@ export default [
         component: Sort,
         meta: {
             isShowFooter: true
-        }
+        },
+        children : [
+            {
+                path: '/sort/sortright/:id',
+                component: sortRight,
+                meta: {
+                    isShowFooter: true
+                },
+            }
+        ]
     },
     {
         path: '/buy',

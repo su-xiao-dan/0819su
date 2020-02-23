@@ -5,20 +5,17 @@
       </div>
       <div id="app">
       <sortLeft/>
-      <sortRight/>
+      <router-view></router-view>
      </div>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
 import sortLeft from '../../components/sortLeft/sortLeft'
-import sortRight from '../../components/sortRight/sortRight'
-
 
   export default {
     components : {
       sortLeft,
-      sortRight
     },
     methods: {
       gotoPath(path){
