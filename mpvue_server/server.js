@@ -25,6 +25,19 @@ router.get('/getCateList', (ctx, next) => {
 });
 
 
+
+let buyList = require('./datas/navWap.json')
+router.get('/getBuyList', (ctx, next) => {
+  ctx.body = buyList
+});
+
+
+let recManual = require('./datas/recManual.json')
+router.get('/getBuyListItem', (ctx, next) => {
+  ctx.body = recManual
+});
+
+
 app
   .use(router.routes())
   .use(router.allowedMethods())

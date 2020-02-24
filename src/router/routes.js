@@ -5,6 +5,7 @@ import Car from '../pages/Car/Car.vue'
 import Profile from '../pages/Profile/Profile.vue'
 import Search from '../pages/Search/Search.vue'
 import sortRight from '../components/sortRight/sortRight.vue'
+import Login from '../pages/login/login.vue'
 
 export default [
     //注册路由
@@ -52,6 +53,10 @@ export default [
     {
         path: '/search',
         component: Search
+    },
+    {
+        path: '/login',
+        component: Login
     },
     {
         path : '/',

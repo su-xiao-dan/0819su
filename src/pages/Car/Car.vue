@@ -28,7 +28,7 @@
     <div class="login">
       <img src="//yanxuan-static.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/noCart-d6193bd6e4.png" alt="">
       <p>去添加点什么吧</p>
-      <button @click="goLogin">登录</button>
+      <button @click="goLogin()">登录</button>
     </div>
   </div>
 </template>

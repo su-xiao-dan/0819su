@@ -21,7 +21,7 @@
       },
       async mounted() {
         let result = await this.$API.getCateNavList()
-        console.log(result)
+        // console.log(result)
         this.cateNavDatas = result.categoryL1List
         this.$router.push(`/sort/sortright/${this.cateNavDatas[0].id}`)
       },

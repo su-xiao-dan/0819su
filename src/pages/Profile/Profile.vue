@@ -13,7 +13,7 @@
         </div>
         <div class="btn">
           <button>手机号快速登录</button>
-          <button>邮箱账号登录</button>
+          <button @click="goLogin()">邮箱账号登录</button>
         </div>
       </div>
       <div class="thirdWrap">
@@ -47,6 +47,9 @@
       },
       goCar(){
         this.$router.push('/car')
+      },
+      goLogin(){
+        this.$router.push('/login')
       }
     },
   }

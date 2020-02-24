@@ -31,7 +31,7 @@
       },
       async mounted() {
         this.cateList = await this.$API.getCateList()
-        console.log(this.cateList)
+        // console.log(this.cateList)
         //获取路由参数
         this.$route.params.id
         //通过id查询对应的对象
